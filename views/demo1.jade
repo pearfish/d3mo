@@ -1,0 +1,12 @@
+extends layout
+
+append additionalHead
+    link(rel='stylesheet', href='stylesheets/demo1.css')
+
+block content
+    h1= title
+    p Welcome to #{title}
+    p demos time whoop
+
+    script('src=javascripts/lib/d3.js')
+    script('src=javascripts/demoscript1.js')

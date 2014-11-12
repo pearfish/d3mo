@@ -1,0 +1,20 @@
+extends layout
+append additionalHead
+    link(rel='stylesheet', href='/stylesheets/demo3.css')
+block content
+    h1= title
+    p Welcome to #{title}
+    p demos time whoop
+    script('src=javascripts/lib/d3.js')
+    script('src=javascripts/demoscript3.js')
+    //note about jade- div tags are assumed - the below line generates a div w/ id dashboard
+    #dashboard
+    //note about jade - script tags should have period after for the js to works
+    script.
+        var freqData=[
+            {Month:'August',freq:{Views:4786, Prints:1319, Transactions:249, MobileViews: 578}}
+            ,{Month:'September',freq:{Views:1101, Prints:412, Transactions:674, MobileViews: 679}}
+            ,{Month:'October',freq:{Views:932, Prints:2149, Transactions:418, MobileViews: 172}}
+            ,{Month:'November',freq:{Views:832, Prints:1152, Transactions:1862, MobileViews: 702}}
+        ];
+        dashboard('#dashboard',freqData);

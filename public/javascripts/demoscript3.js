@@ -38,9 +38,7 @@ d3.json("datas", function(error, data) {
 	var statNames = d3.keys(data[0].stats).filter(function(key) { return key !== "month"; });
 
 	data.forEach(function(d){
-		console.log(d);
-		d.statz = statNames.map(function(name){	return {name: name, value: d[name]}; });
-		console.log(d.statz);
+		d.statz = statNames.map(function(name){	return {name: name, value: d.stats[name]}; });
 	});
 
 
@@ -71,8 +69,6 @@ d3.json("datas", function(error, data) {
 		.enter().append('g')
 		.attr('class', 'g')
 		.attr("transform", function(d) { return "translate(" + x(d.month) + ",0)"; });
-
-	console.log(data.statz);
 
 	monthBlocks.selectAll('rect')
 		.data(function(d) { return d.statz })

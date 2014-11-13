@@ -22,7 +22,7 @@ var yAxis = d3.svg.axis()
 	//.ticks(10, "%");
 
 var color = d3.scale.ordinal()
-	.range(['blue', 'yellow', 'green', 'orange']);
+	.range(['#ED7124', '#224D74', '#D6D64C', '#00AFD8']);
 
 var svg = d3.select("body").append("svg")
 	.attr("width", width + margin.right + margin.left)

@@ -4,11 +4,8 @@ append additionalHead
 block content
     h1= title
     p Welcome to #{title}
-    p demos time whoop
+    p grouped bar chart example
     script('src=javascripts/lib/d3.js')
     script('src=javascripts/demoscript3.js')
     //note about jade- div tags are assumed - the below line generates a div w/ id dashboard
     #dashboard
-    //note about jade - script tags should have period after for the js to works
-    script.
-        //dashboard('#dashboard',datas);

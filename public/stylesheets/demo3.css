@@ -47,3 +47,9 @@ path:hover {  opacity:0.9; }
 .orange{
     fill:orange;
 }
+
+.lineavg{
+    stroke: grey;
+    stroke-width: 2px;
+    fill: none;
+}

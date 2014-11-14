@@ -39,6 +39,7 @@ d3.json("datas", function(error, data) {
 
 	data.forEach(function(d){
 		d.statz = statNames.map(function(name){	return {name: name, value: d.stats[name]}; });
+        d.stuff = d.stats.Prints / d.stats.Views *960; // the *960 is a hack, and a bad performing one
 	});
 
 
@@ -79,45 +80,22 @@ d3.json("datas", function(error, data) {
 		.attr("height", function(d) { return height - y(d.value); })
 		.style("fill", function(d) { return color(d.name); });
 
-/*
-	data.forEach(function(d){
-		thing.append('p')
-			.text(d.month);
-		for(key in d.stats) {
-			thing.append('span')
-				.text(key+": "+d.stats[key]+"\t");
-		}
-		console.log(d);
-		appendRect(svg, x(d.month), y(d.stats.Views), x.rangeBand()/4);
-		appendRect(svg, x(d.month), y(d.stats.Prints), x.rangeBand()/4);
-		appendRect(svg, x(d.month), y(d.stats.Transactions), x.rangeBand()/4);
-		appendRect(svg, x(d.month), y(d.stats.MobileViews), x.rangeBand()/4);
-		/*
-		svg.append("rect")
-			.attr("class", "bar")
-			.attr("x", 2)
-			.attr("width", x.rangeBand())
-			.attr("y", function(d) { return y(d.stats.Views); })
-			.attr("height", function(d) { return height - y(d.stats.Views); });
-*/
 
-/*
-function appendRect(svg, x, y, w){
-	svg.append('rect')
-		.attr('x', x)
-		.attr('y', y)
-		.attr("width", w/4)
-		.attr('height', height-y);
+    //redemption rate line stuff
+    var lineFunsies = d3.svg.line()
+        .x(function(d){
+            return x(d.month);
+        })
+        .y(function(d){
+            return y(d.stuff);
+        })
+        .interpolate('basis');
 
-	/*
-	 .attr("y", function(d) { return y(d.stats.views); })
-	 .attr("height", function(d) { return height - y(d.stats.views); });
-	 */
+    svg.append('svg:path')
+        .attr('d', lineFunsies(data))
+        .attr('class', 'lineavg')
+        .attr('transform', 'translate(80)' ); //this translate is a hacks
 
-/*
-	x.domain(data.map(function(d) { return d.months; }));
-	y.domain([0, d3.max(data, function(d) { return d.stats.views; })]);
- */
 //START AXES
 
 var legend = svg.selectAll(".legend")

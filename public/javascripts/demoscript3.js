@@ -12,6 +12,10 @@ var x1 = d3.scale.ordinal();
 var y = d3.scale.linear()
 	.range([height, 0]);
 
+var y1 = d3.scale.linear()
+    .range([height, 0]);
+
+
 var xAxis = d3.svg.axis()
 	.scale(x)
 	.orient("bottom");
@@ -19,7 +23,11 @@ var xAxis = d3.svg.axis()
 var yAxis = d3.svg.axis()
 	.scale(y)
 	.orient("left");
-	//.ticks(10, "%");
+
+var y1Axis = d3.svg.axis()
+    .scale(y1)
+    .orient("right")
+    .ticks(10, "%");
 
 var color = d3.scale.ordinal()
 	.range(['#ED7124', '#224D74', '#D6D64C', '#00AFD8']);
@@ -39,15 +47,14 @@ d3.json("datas", function(error, data) {
 
 	data.forEach(function(d){
 		d.statz = statNames.map(function(name){	return {name: name, value: d.stats[name]}; });
-        d.stuff = d.stats.Prints / d.stats.Views *960; // the *960 is a hack, and a bad performing one
+        d.stuff = d.stats.Prints / d.stats.Views; // the *960 is a hack, and a bad performing one
+        console.log(d.stuff);
 	});
-
 
 	x.domain(data.map(function(d) { return d.month; }));
 	x1.domain(statNames).rangeRoundBands([0, x.rangeBand()]);
 	y.domain([0, d3.max(data, function(d) { return d.stats.Views; })]);
-	//y.domain([0, d3.max(data, fucntion(d){ return d3.max(d.stats.Views, function(d) { return d.value; }); })]);
-
+    y1.domain([0, d3.max(data, function(d) { return d.stuff; })]);
 
 	svg.append("g")
 		.attr("class", "x axis")
@@ -63,6 +70,11 @@ d3.json("datas", function(error, data) {
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
 		.text("events");
+
+    svg.append('g')
+        .attr('class', 'y axis')
+        .attr("transform", "translate(" + width + ", 0)")
+        .call(y1Axis);
 
 
 	var monthBlocks = svg.selectAll('.month')
@@ -87,7 +99,7 @@ d3.json("datas", function(error, data) {
             return x(d.month);
         })
         .y(function(d){
-            return y(d.stuff);
+            return y1(d.stuff);
         })
         .interpolate('basis');
 
@@ -95,8 +107,6 @@ d3.json("datas", function(error, data) {
         .attr('d', lineFunsies(data))
         .attr('class', 'lineavg')
         .attr('transform', 'translate(80)' ); //this translate is a hacks
-
-//START AXES
 
 var legend = svg.selectAll(".legend")
 	.data(statNames.slice().reverse())
@@ -116,22 +126,4 @@ legend.append("text")
 	.attr("dy", ".35em")
 	.style("text-anchor", "end")
 	.text(function(d) { return d; });
-
-//END AXES
-/*
-	svg.selectAll(".bar")
-		.data(data)
-		.enter().append('p')
-		.text(data);
-*//*
-		.data(data)
-		.enter().append("rect")
-		.attr("class", "bar")
-		.attr("x", function(d) { return x(d.month); })
-		.attr("width", x.rangeBand())
-		.attr("y", function(d) { return y(5); })
-		.attr("height", function(d) { return height - y(5); });
-			*/
 });
-
-

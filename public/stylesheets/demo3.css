@@ -32,22 +32,6 @@ path:hover {  opacity:0.9; }
     width:50px;
 }
 
-.blue{
-    fill:blue;
-}
-
-.green{
-    fill:green;
-}
-
-.yellow{
-    fill:yellow;
-}
-
-.orange{
-    fill:orange;
-}
-
 .lineavg{
     stroke: grey;
     stroke-width: 2px;

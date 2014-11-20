@@ -1,6 +1,10 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
+  img(src='img/'+cat+'.jpg' class='errImg')
+
+  h1 Error
+  h2= error.status +'- '+ message
+
   pre #{error.stack}
+

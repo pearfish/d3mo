@@ -32,12 +32,20 @@ var y1Axis = d3.svg.axis()
 var color = d3.scale.ordinal()
 	.range(['#ED7124', '#224D74', '#D6D64C', '#00AFD8']);
 
+var tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(function(d) {
+        return "<strong>"+ d.name +":</strong> <span style='color:white'>" + d.value + "</span>";
+    });
+
 var svg = d3.select("body").append("svg")
 	.attr("width", width + margin.right + margin.left)
 	.attr("height", height + margin.top + margin.bottom)
 	.append("g")
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+svg.call(tip);
 
 var thing = d3.select('body').append('div');
 
@@ -48,7 +56,6 @@ d3.json("datas", function(error, data) {
 	data.forEach(function(d){
 		d.statz = statNames.map(function(name){	return {name: name, value: d.stats[name]}; });
         d.stuff = d.stats.Prints / d.stats.Views; // the *960 is a hack, and a bad performing one
-        console.log(d.stuff);
 	});
 
 	x.domain(data.map(function(d) { return d.month; }));
@@ -90,7 +97,9 @@ d3.json("datas", function(error, data) {
 		.attr("x", function(d) { return x1(d.name); })
 		.attr("y", function(d) { return y(d.value); })
 		.attr("height", function(d) { return height - y(d.value); })
-		.style("fill", function(d) { return color(d.name); });
+		.style("fill", function(d) { return color(d.name); })
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide);
 
 
     //redemption rate line stuff

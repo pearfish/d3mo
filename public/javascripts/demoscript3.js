@@ -61,7 +61,7 @@ d3.json("datas", function(error, data) {
 	x.domain(data.map(function(d) { return d.month; }));
 	x1.domain(statNames).rangeRoundBands([0, x.rangeBand()]);
 	y.domain([0, d3.max(data, function(d) { return d.stats.Views; })]);
-    y1.domain([0, d3.max(data, function(d) { return d.stuff; })]);
+    y1.domain([0, 1]);
 
 	svg.append("g")
 		.attr("class", "x axis")
@@ -73,7 +73,7 @@ d3.json("datas", function(error, data) {
 		.call(yAxis)
 		.append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("y", 6)
+		.attr("y", 2)
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
 		.text("events");
@@ -81,7 +81,13 @@ d3.json("datas", function(error, data) {
     svg.append('g')
         .attr('class', 'y axis')
         .attr("transform", "translate(" + width + ", 0)")
-        .call(y1Axis);
+        .call(y1Axis)
+		.append("text")
+		.attr("transform", "rotate(-90)")
+		.attr("y", -10)
+		.attr("dy", ".71em")
+		.style("text-anchor", "end")
+		.text("redemption rate");
 
 
 	var monthBlocks = svg.selectAll('.month')
@@ -124,15 +130,16 @@ var legend = svg.selectAll(".legend")
 	.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
 legend.append("rect")
-	.attr("x", width - 18)
-	.attr("width", 18)
-	.attr("height", 18)
-	.style("fill", color);
+		.attr("x", width + 37)
+		.attr("width", 120)
+		.attr("height", 18)
+		.style("fill", color);
 
 legend.append("text")
-	.attr("x", width - 24)
-	.attr("y", 9)
-	.attr("dy", ".35em")
-	.style("text-anchor", "end")
-	.text(function(d) { return d; });
+		.attr("x", width + 120)
+		.attr("y", 9)
+		.attr("dy", ".35em")
+		.style("text-anchor", "end")
+		.style("fill", 'white')
+		.text(function(d) { return d; });
 });

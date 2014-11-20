@@ -44,7 +44,7 @@ if (app.get('env') === 'development') {
         res.render('error', {
             message: err.message,
             error: err,
-            cat: Math.floor(Math.random()*5)+1
+            cat: Math.floor(Math.random()*6)+1
         });
     });
 }

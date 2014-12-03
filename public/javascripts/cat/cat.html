@@ -1,0 +1,16 @@
+<h3>Categories</h3>
+
+<p><button>add new job</button></p>
+
+<table>
+    <tr>
+        <th>job name</th>
+        <th>job status</th>
+    </tr>
+
+    <!-- this is bullshitted from memory, check that this works lateerrrrrr -->
+    <tr ng-repeat="job in jobs">
+        <th>{{job.name}}</th>
+        <th>{{job.status}}</th>
+    </tr>
+</table>

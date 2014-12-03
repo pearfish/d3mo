@@ -1,12 +1,10 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('batch2', [
   'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version',
-  'myApp.cats'
+  'batch2.view1',
+  'batch2.cat'
 ]).
     config(['$routeProvider', function($routeProvider) {
       $routeProvider
@@ -33,13 +31,5 @@ angular.module('myApp', [
          templateUrl: 'views/spahome.html'
          })//;
          */
-
-
-        //    NEW STUFF
-
-///   OI!  cat router stuff now in /cat
-
-        //    ENDNEW STUFF
-
           .otherwise({redirectTo: '/view1'});
     }]);

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en" ng-app="batch2">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,6 @@
 
     <ul class="menu">
         <li><a href="#/view1">view1</a></li>
-        <li><a href="#/view2">view2</a></li>
         <li><a href="#/cat">categories</a></li>
     </ul>
 
@@ -22,19 +22,15 @@
     <div ng-view></div>
 
     <hr>
-    <div>Angular seed app: v<span app-version></span></div>
-
-
-
 
 <!-- TODO: the project structure is some heavily butchered version of angular-seed.  maybe fix. -->
 
 <script src="javascripts/lib/angular/angular.js"></script>
-<script src="javascripts/lib/angular-route.js"></script>
+<script src="javascripts/lib/angular/angular-route.js"></script>
 <script src="app.js"></script>
 <script src="javascripts/batch/view1/view1.js"></script>
 <!--    BOOM~~~! view2 is now cat <script src="javascripts/batch/view2/view2.js"></script> -->
-<script src="javascripts/batch/cat/catCtrl.js"></script>
+<script src="javascripts/batch/cat/cat.js"></script>
 
 </body>
 </html>

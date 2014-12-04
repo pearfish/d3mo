@@ -2,9 +2,12 @@
 
 // Declare app level module which depends on views, and components
 angular.module('batch2', [
-  'ngRoute',
-  'batch2.view1',
-  'batch2.cat'
+    'ngRoute',
+    'batch2.view1',
+    'batch2.cat',
+    'batch2.login',
+    'ngResource'
+
 ]).
     config(['$routeProvider', function($routeProvider) {
       $routeProvider
@@ -31,5 +34,6 @@ angular.module('batch2', [
          templateUrl: 'views/spahome.html'
          })//;
          */
-          .otherwise({redirectTo: '/view1'});
+          .otherwise({redirectTo: '/login'});
+        //TODO: make a faux 404 'shame on you' page
     }]);

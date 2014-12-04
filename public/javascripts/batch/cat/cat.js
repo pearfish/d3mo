@@ -25,11 +25,30 @@ angular.module('batch2.cat', ['ngRoute'])
     }])
 
 
-    .controller('catCtrl', [function() {
+    .controller('catCtrl', ['$scope', '$location', '$resource', '$http', function(scope, loc, resource, http) {
         //bleh
 
+        scope.path = loc.path();
+
+        var schedResource = resource(
+            'http://localhost:8090/schedules',
+            {
+                callback: "JSON_CALLBACK"
+            },
+            {
+                getFriends: {
+                    method: "JSONP",
+                    isArray: true
+            }
+        });
+
+
+
         var init = function(){
-            console.log('quack');
+            console.log('attempting to fetch data, quack quack');
+            schedResource.get(function(profiles){
+                scope.theStuff = profiles;
+            });
         };
         init();
     }]);

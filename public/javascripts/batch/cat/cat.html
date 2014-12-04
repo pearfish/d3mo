@@ -1,4 +1,6 @@
-<h3>Categories</h3>
+<h3>{{path}}</h3>
+
+<h1>Categories</h1>
 
 <p><button>add new job</button></p>
 
@@ -8,9 +10,11 @@
         <th>job status</th>
     </tr>
 
-    <!-- this is bullshitted from memory, check that this works lateerrrrrr -->
+    <!-- this is bullshitted make sure it ends up matching the stuff from the batch service-->
     <tr ng-repeat="job in jobs">
-        <th>{{job.name}}</th>
+        <th>
+            <a ng-href="job/{{job.name}}">link1</a>
+        </th>
         <th>{{job.status}}</th>
     </tr>
 </table>

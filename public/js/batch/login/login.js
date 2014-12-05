@@ -6,7 +6,7 @@ angular.module('batch2.login', ['ngRoute'])
 		$routeProvider
 			.when('/login', {
 				controller: 'loginCtrl',
-				templateUrl: 'javascripts/batch/login/login.html'
+				templateUrl: 'js/batch/login/login.html'
 			})
 	}])
 

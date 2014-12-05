@@ -1,14 +1,27 @@
-extends layout
+doctype html
+html(ng-app='batch2')
+    head
+        title= batch2point0
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/app.css')
+        block additionalHead
+    body
+        block content
+            ul(class='menu')
+                li: a(href='#/view1') view1
+                li: a(href='#/cat') categories
 
-block content
-  h1= title
-  p Welcome to #{title}
+            div(ng-view)
 
-  p demos
-  ul
-    li
-        a(href="/demo1") demo1
-    li
-        a(href="/demo2") demo2
-    li
-        a(href="/demo3") demo3
+            hr
+
+            footer hello this is a footer.  batch!  2.0!  so glorious
+
+//TODO: the project structure is some heavily butchered version of angular-seed.  maybe fix.
+script(src="js/lib/angular/angular.js")
+script(src="js/lib/angular/angular-route.js")
+script(src="js/lib/angular/angular-resource.js")
+script(src="app.js")
+script(src="js/batch/view1/view1.js")
+script(src="js/batch/cat/cat.js")
+script(src="js/batch/login/login.js")

@@ -8,15 +8,17 @@ angular.module('batch2', [
     'batch2.login',
     'ngResource'
 
-]).
-    config(['$routeProvider', function($routeProvider) {
-      $routeProvider
+])
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider
         //    !!!!!NOTE!!!! there are other routes defined in view1.js and cat.js !!!!ENDNOTE!!!!       //
-
+        .when('/', {
+            templateUrl : 'js/views/home.html'
+        })
 
 
         /*
-         .when('/users/new', {
+         .when('/', {
          controller : 'NewUserCtrl',
          templateUrl : 'views/newuser.html'
          })
@@ -36,4 +38,25 @@ angular.module('batch2', [
          */
           .otherwise({redirectTo: '/login'});
         //TODO: make a faux 404 'shame on you' page
-    }]);
+    }])
+
+    .run(['$rootScope', '$location', '$http', function($rootScope, $loc, $http){
+        //TODO - in future, flesh out rootScope.token into a more full user object or whatevs
+        console.log('run begin');
+
+        $rootScope.token = localStorage.getItem('token') || undefined;
+
+        if ($rootScope.token) {
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.token;
+        }
+
+        $rootScope.$on('$routeChangeStart', function (event, next, current) {
+            // redirect to login page if not logged in
+            console.log($rootScope.token);
+            if ($loc.path() !== '/login' && !$rootScope.token) {
+                console.log('user not validated- redirecting...');
+                $loc.path('/login');
+            }
+        });
+    }])
+;

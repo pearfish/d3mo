@@ -16,6 +16,12 @@ angular.module('batch2.login', ['ngRoute'])
 
 		scope.path = loc.path();
 
+		scope.submitLogin = function(){
+			console.log('submitLogin called, user object= '+scope.user);
+			localStorage.setItem('token', scope.user.name+scope.user.pass);
+			loc.path('/');
+		};
+
 		var init = function(){
 			console.log('loginCtrl initialized')
 		};

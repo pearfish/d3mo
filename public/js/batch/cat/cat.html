@@ -1,21 +1,35 @@
-<h3>{{path}}</h3>
+<!--<h3>{{path}}</h3>-->
 
-<h1>Categories</h1>
+<h2>All Jobs, most recent run with status</h2>
 
 <p><button>add new job</button></p>
+<input type="text" ng-model="groupFilter" placeholder="search">
 
-<table>
+
+<table class="grouptable">
     <tr>
+        <th>job id</th>
+        <th>group</th>
         <th>job name</th>
-        <th>job status</th>
+        <th>class name</th>
+        <th>status</th>
+        <th>last run time</th>
+        <th>duration</th>
     </tr>
 
     <!-- this is bullshitted make sure it ends up matching the stuff from the batch service-->
     <tr ng-repeat="job in jobs">
-        <td>{{job.name}}</td>
+        <td>{{job.id}}</td>
+        <td>{{job.group}}</td>
+        <td>{{job.jobName}}</td>
+        <td>{{job.jobClassName}}</td>
         <td>{{job.status}}</td>
+        <td>{{job.lastRun}}</td>
+        <td>{{job.duration}}</td>
+<!--
         <td>
             <a ng-href="/#/cat/{{job.name}}">linky</a>
         </td>
+-->
     </tr>
 </table>

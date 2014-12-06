@@ -1,5 +1,3 @@
-/* app css stylesheet */
-
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -27,4 +25,16 @@
 .menu > li:nth-child(1):before {
   content: "";
   padding: 0;
+}
+
+.grouptable table, th, td{
+  border: 1px solid black;
+}
+
+.grouptable th{
+  background-color: #7d7d7d;
+}
+
+.grouptable tr:nth-child(even) {
+  background-color: #d4d4d4;
 }

@@ -53,7 +53,11 @@ angular.module('batch2', [
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
             // redirect to login page if not logged in
             console.log($rootScope.token);
-            if ($loc.path() !== '/login' && !$rootScope.token) {
+
+            var checkToken = localStorage.getItem('token') || false;
+
+            //if ($loc.path() !== '/login' && !$rootScope.token ) {
+            if($loc.path() !== '/login' && !checkToken){
                 console.log('user not validated- redirecting...');
                 $loc.path('/login');
             }

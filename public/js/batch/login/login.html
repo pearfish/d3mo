@@ -1,4 +1,13 @@
 <h3>{{path}}</h3>
 
-<label>username    <input type="text"></label>
-<label>password    <input type="password"></label>
+
+
+<form name="loginForm" ng-controller="loginCtrl">
+    <!--<input ng-model="val" ng-pattern="/^\d+$/" name="anim" class="my-input" />-->
+
+    <label> username: <input name="username" ng-model="user.name" type="text"></label>
+    <label> password: <input name="password" ng-model="user.pass" type="password"></label>
+
+    <button ng-click="submitLogin()">Login</button>
+
+</form>
